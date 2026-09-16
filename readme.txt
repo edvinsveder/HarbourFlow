@@ -7,16 +7,16 @@ Python version tested:
 
 Team members and concrete contributions
 ---------------------------------------
-Name:
+Name: Isac
 Contribution:
 
-Name:
+Name: Edvin
 Contribution:
 
-Name:
+Name: Gustav
 Contribution:
 
-Name (if applicable):
+Name (if applicable): Zaid
 Contribution:
 
 Design notes
