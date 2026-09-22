@@ -122,6 +122,7 @@ def main():
             # Function for task 6
         else:
             pass
+            #import weekly_report # Test - May be changed or removed. Unsure if allowed.
             # Function for task 7
 
     print("Console closed. Dispatch data remains safe.")
