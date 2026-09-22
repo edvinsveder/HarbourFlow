@@ -64,7 +64,7 @@ def check_van_cap():  # Prompts user for load limtit and individual parcel weigh
     acc_parc = 0
     loaded_weight = 0
 
-    van_cap = input("Van capacity (kg):") # TODO WARNING - Lacks any sanity checks. User data may not be
+    van_cap = input("Van capacity (kg):") # TODO WARNING - Lacks any sanity checks. 
     van_cap = float(van_cap)
     remaining_cap = van_cap
 
