@@ -8,16 +8,16 @@ Python version tested:
 Team members and concrete contributions
 ---------------------------------------
 Name: Isac
-Contribution:
+Contribution: Task 9 and 7
 
 Name: Edvin
-Contribution:
+Contribution: Task 4 and 5
 
 Name: Gustav
-Contribution:
+Contribution: Task 1, 2, and 8
 
-Name (if applicable): Zaid
-Contribution:
+Name: Zaid
+Contribution: Task 3 and 6
 
 Design notes
 ------------
