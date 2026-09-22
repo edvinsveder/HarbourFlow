@@ -15,9 +15,7 @@ Task number 7
 Task number 9
 
 Name: Edvin
-Contribution:
-Task number 4
-Task number 5
+Contribution: consolidate_data, check_van_cap
 
 Name: Gustav
 Contribution:
@@ -39,3 +37,4 @@ How shared calculations are reused:
 Known limitations
 -----------------
 Write "None known" or describe each known limitation.
+1. check_van_cap - User input lacks any sanity checks, assumes correct input. 
