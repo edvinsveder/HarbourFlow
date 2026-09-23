@@ -1,13 +1,15 @@
+import weekly_report
+
 # Put global test variables here:
 consolidate_data_testing = "gb-104, GB-220, gb-104, se-011, GB-220"
 
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
 # Task 1, menu
-def menu():  # To chose which of the services
-    # Print looks bad when run, will fix
-    print('''HARBORFLOW DISPATCH CONSOLE
+def menu(): 
+    print(f"\n----------------------------------------------------------------")
+    print('''
+    HARBORFLOW DISPATCH CONSOLE
     1. Close console
     2. Validate booking reference
     3. Calculate delivery quote
@@ -15,13 +17,12 @@ def menu():  # To chose which of the services
     5. Check van capacity
     6. Classify service performance
     7. Produce weekly dispatch report''')
+    print(f"\n----------------------------------------------------------------\n")
 
     choice = input("Select service: ")
     while choice.isdigit() is False or int(choice) < 1 or int(choice) > 7:  # To make sure the choice is always an integer and within 1-7
         choice = input("Invalid input, please chooise between 1-7: ")
-
     return int(choice)
-
 
 # Task 2, validate reference
 def validate_reference(text):
@@ -33,12 +34,12 @@ def validate_reference(text):
     fixed = text[0:3]
     customer_code = text[4:7]
     shipment_number = text[8:12]
+
     # Hope we're allowed to use isalpha and isdigit
     if fixed != "HFL" or customer_code.isalpha() is False or shipment_number.isdigit() is False:
         return ""
-
-    return text
-
+    
+    return text 
 
 # Task 4, consolidate data
 def consolidate_data(scanner_data):  # Takes a comma separated string and parses its contents.
@@ -91,41 +92,38 @@ def check_van_cap():  # Prompts user for load limtit and individual parcel weigh
 
 def main():
     while True:
-        service = menu()
+        service = menu() # Calls on the function of the service choice, breaks loop if 1 is chosen
 
-        # Calls on the function of the service choice, breaks loop if 1 is chosen
-        # Unsure if we said not to use break or not, can do something else if thats the case
-        if service == 1:
-            break
-        elif service == 2:
-            reference = input("Booking reference: ")
-            output = validate_reference(reference)
+        match service:
+            case 1:
+                break
+            case 2:
+                reference = input("Booking reference: ")
+                output = validate_reference(reference)
 
-            # I know this is stupid but assignment said to return as empty string if invalid
-            if output == "":
-                print("Invalid reference")
-            else:
-                print(f"Valid reference: {output}")
-        elif service == 3:
-            pass
-            # Function for task 3
-        elif service == 4:
-            pass
-            # consolidate_data(consolidate_data_testing) # Test - May be removed 
-            # Function for task 4
-        elif service == 5:
-            pass
-            # check_van_cap() # Test - May be removed
-            # Function for task 5
-        elif service == 6:
-            pass
-            # Function for task 6
-        else:
-            import weekly_report # Test - May be changed or removed. Unsure if allowed.
-            # Function for task 7
+                if output == "": # Check if validate_reference returns empty string (signaling invalid ref) 
+                    print("Invalid reference")
+                else:
+                    print(f"Valid reference: {output}")
+                hold = input("Press any key to continue...")
+
+            case 3:
+                print("To be implemented.")
+                hold = input("Press any key to continue...")
+            case 4:
+                consolidate_data(consolidate_data_testing)
+                hold = input("Press any key to continue...")
+            case 5:
+                check_van_cap()
+                hold = input("Press any key to continue...")
+            case 6:
+                print("To be implemented.")
+                hold = input("Press any key to continue...")
+            case 7:
+                weekly_report.weekly_dispatch_report()
+                hold = input("Press any key to continue...")
 
     print("Console closed. Dispatch data remains safe.")
 
-
-if __name__ == "__main__":  # Namespace func - do not touch!
+if __name__ == "__main__":
     main()
