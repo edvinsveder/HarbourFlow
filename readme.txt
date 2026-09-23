@@ -15,12 +15,14 @@ Task number 7
 Task number 9
 
 Name: Edvin
-Contribution: consolidate_data, check_van_cap
+Contribution: 
+Task number 4: consolidate_data
+Task number 5: check_van_cap
 
 Name: Gustav
 Contribution:
-Task number 1
-Task number 2
+Task number 1: menu
+Task number 2: validate_reference
 Task number 8
 
 Name (if applicable): Zaid

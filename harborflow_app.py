@@ -3,8 +3,46 @@ consolidate_data_testing = "gb-104, GB-220, gb-104, se-011, GB-220"
 
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-def consolidate_data(scanner_data): # Takes a comma separated string and parses its contents.
-    str_list = [] # Consolidated in list for ease of export
+
+# Task 1, menu
+def menu():  # To chose which of the services
+    # Print looks bad when run, will fix
+    print('''HARBORFLOW DISPATCH CONSOLE
+    1. Close console
+    2. Validate booking reference
+    3. Calculate delivery quote
+    4. Consolidate parcel labels
+    5. Check van capacity
+    6. Classify service performance
+    7. Produce weekly dispatch report''')
+
+    choice = input("Select service: ")
+    while choice.isdigit() is False or int(choice) < 1 or int(choice) > 7:  # To make sure the choice is always an integer and within 1-7
+        choice = input("Invalid input, please chooise between 1-7: ")
+
+    return int(choice)
+
+
+# Task 2, validate reference
+def validate_reference(text):
+    text = text.strip().upper()  # Normalizing the text
+    if len(text) != 12 or text[3] != "-" or text[7] != "-": # Checking its the right length and has hyphens in correct spot
+        return ""
+
+    # Dividing the text up in parts and checking to make sure those are correct
+    fixed = text[0:3]
+    customer_code = text[4:7]
+    shipment_number = text[8:12]
+    # Hope we're allowed to use isalpha and isdigit
+    if fixed != "HFL" or customer_code.isalpha() is False or shipment_number.isdigit() is False:
+        return ""
+
+    return text
+
+
+# Task 4, consolidate data
+def consolidate_data(scanner_data):  # Takes a comma separated string and parses its contents.
+    str_list = []  # Consolidated in list for ease of export
     obj_count = 0
 
     print(f"Scanned labels: {scanner_data}")
@@ -19,12 +57,14 @@ def consolidate_data(scanner_data): # Takes a comma separated string and parses 
     print(f"Total unique parcels: {obj_count}")
     return
 
-def check_van_cap(): # Prompts user for load limtit and individual parcel weight. Calculates max load & prints wheter a parcel is accepted or rejected.
+
+# Task 5, checking van capacity
+def check_van_cap():  # Prompts user for load limtit and individual parcel weight. Calculates max load & prints wheter a parcel is accepted or rejected.
     tot_parc = 0
     acc_parc = 0
     loaded_weight = 0
 
-    van_cap = input("Van capacity (kg):") # TODO WARNING - Lacks any sanity checks. User data may not be
+    van_cap = input("Van capacity (kg):") # TODO WARNING - Lacks any sanity checks. 
     van_cap = float(van_cap)
     remaining_cap = van_cap
 
@@ -48,9 +88,45 @@ def check_van_cap(): # Prompts user for load limtit and individual parcel weight
     print(f"Remaining capacity: {remaining_cap:.2f} kg")
     return
 
-def main():
-    consolidate_data(consolidate_data_testing) # Test - May be removed 
-    check_van_cap() # Test - May be removed
 
-if __name__ == "__main__": # Namespace func - do not touch!
+def main():
+    while True:
+        service = menu()
+
+        # Calls on the function of the service choice, breaks loop if 1 is chosen
+        # Unsure if we said not to use break or not, can do something else if thats the case
+        if service == 1:
+            break
+        elif service == 2:
+            reference = input("Booking reference: ")
+            output = validate_reference(reference)
+
+            # I know this is stupid but assignment said to return as empty string if invalid
+            if output == "":
+                print("Invalid reference")
+            else:
+                print(f"Valid reference: {output}")
+        elif service == 3:
+            pass
+            # Function for task 3
+        elif service == 4:
+            pass
+            # consolidate_data(consolidate_data_testing) # Test - May be removed 
+            # Function for task 4
+        elif service == 5:
+            pass
+            # check_van_cap() # Test - May be removed
+            # Function for task 5
+        elif service == 6:
+            pass
+            # Function for task 6
+        else:
+            pass
+            #import weekly_report # Test - May be changed or removed. Unsure if allowed.
+            # Function for task 7
+
+    print("Console closed. Dispatch data remains safe.")
+
+
+if __name__ == "__main__":  # Namespace func - do not touch!
     main()
