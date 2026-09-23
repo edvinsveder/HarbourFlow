@@ -1,5 +1,4 @@
 def weekly_dispatch_report():
-    
 
     total_deliveries = 0 # Accumulator for the "total deliveries" part of the branch.
     met_target = 0 # Accumulator for the "days meeting target" part of the branch.
@@ -43,7 +42,7 @@ def weekly_dispatch_report():
     print(f"Total deliveries: {total_deliveries}")
     print(f"Average per day: {average:.2f}")
 
-    # Index not allowed? Must re-visit
+    # Index not allowed? Will re-visit
     print(f"Highest day: {weekdays[completed_deliveries.index(highest_day)]} ({highest_day})")
     print(f"Lowest day: {weekdays[completed_deliveries.index(lowest_day)]} ({lowest_day})")
     print(f"Days meeting target: {met_target}")
