@@ -73,19 +73,14 @@ def check_van_cap():  # Prompts user for load limtit and individual parcel weigh
     remaining_cap = van_cap
 
     parcel_weights = input("Parcel weights (kg):")
-    # Added conditions so parcel_weights cant be negative
-    breaker = True
-    while breaker:
-        for item in parcel_weights.split(","):
+
+    for item in parcel_weights.split(","):
             if float(item) <= 0:
-                print("Error - Value must be greater than zero.")
-                parcel_weights = input("Parcel weights (kg):")
-                breaker = True
-                break
-            else:
-                breaker = False
+                return True
 
     for item in parcel_weights.split(","):  # Separate by comma, strip whitespace, add content to list of obj
+        if float(item) <= 0:
+            return True
         tot_parc += 1
         float_temp = float(item.strip())
 
@@ -130,8 +125,8 @@ def main():
             # consolidate_data(consolidate_data_testing) # Test - May be removed 
             # Function for task 4
         elif service == 5:
-            pass
-            check_van_cap() # Test - May be removed
+            while check_van_cap():
+                print("Error - Value must be greater than zero.")
             # Function for task 5
         elif service == 6:
             pass

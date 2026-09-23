@@ -13,23 +13,10 @@ def weekly_dispatch_report():
         completed_deliveries_str = completed_deliveries_input.split(", ")
     completed_deliveries = [int(x) for x in completed_deliveries_str] # Converts the strings in the set into integers
 
-    # Incredibly scuffed way to check that all values are positive, if not, asked to input values again
-    breaker = True
-    while breaker:
-        for x in completed_deliveries:
-            if x < 0:
-                print("Error - Weekly report values cannot be negative.")
-                completed_deliveries_input = input("Completed deliveries: ") # User-input in the form "x, y, z"
-                completed_deliveries_str = completed_deliveries_input.split(", ") # Converts the user-input into a set of strings, cuts out the comma and spaces
-                while len(completed_deliveries_str) != 7:
-                    print("Error - Weekly report requires 7 delivery counts.")
-                    completed_deliveries_input = input("Completed deliveries: ")
-                    completed_deliveries_str = completed_deliveries_input.split(", ")
-                completed_deliveries = [int(x) for x in completed_deliveries_str]
-                breaker = True
-                break
-            else:
-                breaker = False
+    # Checking to make sure all delivery values are greater than 0
+    for x in completed_deliveries:
+        if x < 0:
+            return True
 
 
     highest_day = completed_deliveries[0]
@@ -67,4 +54,5 @@ def weekly_dispatch_report():
     print(f"Days meeting target: {met_target}")
     print()
 
-weekly_dispatch_report()
+while weekly_dispatch_report():
+    print("Error - Weekly report values cannot be negative.")
