@@ -23,7 +23,7 @@ Name: Gustav
 Contribution:
 Task number 1: menu
 Task number 2: validate_reference
-Task number 8
+Task number 8: Make the console resilient
 
 Name (if applicable): Zaid
 Contribution:
