@@ -23,7 +23,7 @@ Name: Gustav
 Contribution:
 Task number 1: menu
 Task number 2: validate_reference
-Task number 8
+Task number 8: Make the console resilient
 
 Name (if applicable): Zaid
 Contribution:
@@ -33,10 +33,18 @@ Task number 6
 Design notes
 ------------
 Main function boundaries:
-How input validation is organized:
+
+How input validation is organized: 
+Gustav went over tasks 2, 3, 5 and 7 to add conditions to which values are accepted
+If not accepted then user is prompted again to reenter values. 
+Inputing letters instead of numbers may break code in some instances.
+
 How shared calculations are reused:
 
 Known limitations
 -----------------
 Write "None known" or describe each known limitation.
-1. check_van_cap - User input lacks any sanity checks, assumes correct input. 
+1. check_van_cap - User input lacks any sanity checks, assumes correct input.
+UPDATED - Now rejects negative numbers but anything that isnt numbers breaks code. 
+2. weekly_report - Not inputting numbers while still being 7 objects breaks code.
+3. task-3 - Not inputting numbers breaks code.

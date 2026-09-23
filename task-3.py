@@ -3,7 +3,14 @@
 
 #for trail the distance and weight have input
 distance = float(input("Distance (km): "))
+# Added conditions so that the distance and weight must be above 0
+while distance <= 0:
+    print("Error - Value must be greater than zero.")
+    distance = float(input("Distance (km): "))
 weight = float(input("Weight (kg): "))
+while weight <= 0:
+    print("Error - Value must be greater than zero.")
+    weight = float(input("Weight (kg): "))
 service_multiplier = 0
 
 
@@ -13,6 +20,10 @@ print("X. Express  -  25% extra cost")
 print("P. Priority  -  60% extra cost")
 
 service_code = input("Dilivery type (the letter before type): ")
+# Added conditions so that the delivery type must be s, x or p
+while service_code.upper() != "S" or service_code.upper() != "X" or service_code.upper() != "P":
+    print("Error - Service code must be S, X or P.")
+    service_code = input("Dilivery type (the letter before type): ")
 
 
 def type_of_delivery(service_code):
