@@ -96,28 +96,31 @@ def comparing_delivery_scenarios():
     dist = float(input("Distance (km): "))
     wei = float(input("Weight (kg): "))
 
-    from task3 import delivery_cost
+    from task3 import delivery_cost # Imports function from task3 that calculates prices.
 
+    print()
     print("Service comparison")
-    print(f"Standard: {delivery_cost("S", distance = dist, weight = wei)}")
-    print(f"Express: {delivery_cost("X", distance = dist, weight = wei)}")
-    print(f"Priority: {delivery_cost("P", distance = dist, weight = wei)}")
+    print(f"Standard: {delivery_cost("S", distance = dist, weight = wei)}") # Calculates price for Standard delivery
+    print(f"Express: {delivery_cost("X", distance = dist, weight = wei)}") # Calculates price for Express delivery
+    print(f"Priority: {delivery_cost("P", distance = dist, weight = wei)}") # Calculates price for Priority delivery
 
+    # The set of prices for each delivery type
     all_options = [delivery_cost("S", distance = dist, weight = wei), delivery_cost("X", distance = dist, weight = wei), delivery_cost("P", distance = dist, weight = wei)]
     service_codes = ["Standard", "Express", "Priority"]
 
+    # Calculates cheapest and most expensive options
     cheapest = all_options[0]
     for n in all_options[1:]:
         if n < cheapest:
             cheapest = n
-
     expensive = all_options[0]
     for n in all_options[1:]:
         if n > expensive:
             expensive = n
 
-    print(f"Cheapest service: {service_codes[all_options.index(cheapest)]}")
-    print(f"Most expensive service: {service_codes[all_options.index(expensive)]}")
+    print(f"Cheapest service: {service_codes[all_options.index(cheapest)]}") # Finds the index for cheapest price in all_options and prints corresponding delivery type at that same index
+    print(f"Most expensive service: {service_codes[all_options.index(expensive)]}") # - II -
+    print()
     return
 
 
@@ -139,7 +142,7 @@ def main():
             else:
                 print(f"Valid reference: {output}")
         elif service == 3:
-            task3.run_task3()
+            task3.run_task3() # Runs task 3
             # Function for task 3
         elif service == 4:
             pass
