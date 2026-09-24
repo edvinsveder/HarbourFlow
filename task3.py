@@ -15,7 +15,6 @@ def run_task3():
 
 
 
-
     print("Type of delivery do you want?")
     print("S. Standard  -  0% extra cost")
     print("X. Express  -  25% extra cost")
@@ -70,7 +69,7 @@ def delivery_cost(service_code, distance, weight):
     quote = 0
     service_multiplier = type_of_delivery(service_code)
         
-    subtotal = 45.00 + distance*6.50 + weight*4.00 
+    subtotal = 45.00 + distance * 6.50 + weight * 4.00 
     #the distance should be in km and the weight in kg
 
     quote = subtotal * service_multiplier 

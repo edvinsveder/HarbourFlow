@@ -93,8 +93,15 @@ def check_van_cap():  # Prompts user for load limtit and individual parcel weigh
 # Task 9, Comparing delivery scenarios
 def comparing_delivery_scenarios():
 
-    dist = float(input("Distance (km): "))
-    wei = float(input("Weight (kg): "))
+    dist = input("Distance (km): ")
+    while dist.replace(".", "").isdigit() is False or float(dist) < 0: # Replaces the . (in case of float input) and checks if the remaining part of the string is digits. Also checks if value is allowed (>0)
+        dist = input("Invalid input, please enter a valid number: ")
+    dist = float(dist) # Converts to float to allow for calculation
+
+    wei = input("Weight (kg): ")
+    while wei.replace(".", "").isdigit() is False or float(dist) < 0: # Replaces the . (in case of float input) and checks if the remaining part of the string is digits. Also checks if value is allowed (>0)
+        wei = input("Invalid input, please enter a valid number: ")
+    wei = float(wei) # Converts to float to allow for calculation
 
     from task3 import delivery_cost # Imports function from task3 that calculates prices.
 
@@ -105,7 +112,11 @@ def comparing_delivery_scenarios():
     print(f"Priority: {delivery_cost("P", distance = dist, weight = wei)}") # Calculates price for Priority delivery
 
     # The set of prices for each delivery type
-    all_options = [delivery_cost("S", distance = dist, weight = wei), delivery_cost("X", distance = dist, weight = wei), delivery_cost("P", distance = dist, weight = wei)]
+    all_options = [
+        delivery_cost("S", distance = dist, weight = wei),
+        delivery_cost("X", distance = dist, weight = wei), 
+        delivery_cost("P", distance = dist, weight = wei)
+        ]
     service_codes = ["Standard", "Express", "Priority"]
 
     # Calculates cheapest and most expensive options
