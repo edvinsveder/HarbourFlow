@@ -19,26 +19,23 @@ print("S. Standard  -  0% extra cost")
 print("X. Express  -  25% extra cost")
 print("P. Priority  -  60% extra cost")
 
-service_code = input("Dilivery type (the letter before type): ")
-# Added conditions so that the delivery type must be s, x or p
-while service_code.upper() != "S" or service_code.upper() != "X" or service_code.upper() != "P":
+
+service_code = input("Delivery type (the letter before type): ")
+service_code = service_code.upper()
+while service_code != "X" and service_code != "P" and service_code != "S":
     print("Error - Service code must be S, X or P.")
-    service_code = input("Dilivery type (the letter before type): ")
+    service_code = input("Delivery type (the letter before type): ")
+    service_code = service_code.upper()
 
 
 def type_of_delivery(service_code):
     
-    service_code = service_code.upper()
     if service_code == "S" or service_code == "STANDARD":
         return 1.00
     elif service_code == "X" or service_code == "EXPRESS":
         return 1.25
     elif service_code == "P" or service_code == "PRIORITY":
         return 1.60
-    else:
-        print("Invalid delivery type - Try Again")
-        new_service_code = input("Delivery type (the letter before type): ")
-        return type_of_delivery(new_service_code)
 
 
 #below is what i had at start when trying things out
