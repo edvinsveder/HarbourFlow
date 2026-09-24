@@ -18,7 +18,7 @@ def menu():  # To chose which of the services
 
     choice = input("Select service: ")
     while choice.isdigit() is False or int(choice) < 1 or int(choice) > 7:  # To make sure the choice is always an integer and within 1-7
-        choice = input("Error - Select a service from 1 to 8: ")
+        choice = input("Invalid input, please chooise between 1-7: ")
 
     return int(choice)
 
@@ -64,23 +64,13 @@ def check_van_cap():  # Prompts user for load limtit and individual parcel weigh
     acc_parc = 0
     loaded_weight = 0
 
-    van_cap = input("Van capacity (kg):")
-    # Added conditions so van_cap cant be negative
-    while float(van_cap) <= 0:
-        print("Error - Value must be greater than zero.")
-        van_cap = input("Van capacity (kg):")
+    van_cap = input("Van capacity (kg):") # TODO WARNING - Lacks any sanity checks. 
     van_cap = float(van_cap)
     remaining_cap = van_cap
 
-    parcel_weights = input("Parcel weights (kg):")
-
-    for item in parcel_weights.split(","):
-            if float(item) <= 0:
-                return True
+    parcel_weights = input("Parcel weights (kg):") # TODO WARNING - Lacks any sanity checks
 
     for item in parcel_weights.split(","):  # Separate by comma, strip whitespace, add content to list of obj
-        if float(item) <= 0:
-            return True
         tot_parc += 1
         float_temp = float(item.strip())
 
@@ -112,9 +102,8 @@ def main():
             output = validate_reference(reference)
 
             # I know this is stupid but assignment said to return as empty string if invalid
-            while output == "":
-                reference = input("Invalid reference, please type a valid reference: ")
-                output = validate_reference(reference)
+            if output == "":
+                print("Invalid reference")
             else:
                 print(f"Valid reference: {output}")
         elif service == 3:
@@ -125,16 +114,16 @@ def main():
             # consolidate_data(consolidate_data_testing) # Test - May be removed 
             # Function for task 4
         elif service == 5:
-            while check_van_cap():
-                print("Error - Value must be greater than zero.")
+            pass
+            # check_van_cap() # Test - May be removed
             # Function for task 5
         elif service == 6:
             pass
             # Function for task 6
         else:
-            import weekly_report # Test - May be changed or removed. Unsure if allowed.
+            import weekly_report # Test - May be changed or removed.
             # Function for task 7
-        _ = input("Press enter to continue...")
+
     print("Console closed. Dispatch data remains safe.")
 
 

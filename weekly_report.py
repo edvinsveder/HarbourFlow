@@ -18,27 +18,28 @@ def weekly_dispatch_report():
         if x < 0:
             return True
 
-
+# Calculates the day of which the highest recorded delivery was made
     highest_day = completed_deliveries[0]
     for n in completed_deliveries[1:]:
         if n > highest_day:
             highest_day = n
 
-
+# Calculates the day of which the lowest recorded delivery was made
     lowest_day = completed_deliveries[0]
     for n in completed_deliveries[1:]:
         if n < lowest_day:
             lowest_day = n
 
-
+# Calculates the total deliveries
     for n in completed_deliveries[0:]:
         total_deliveries += n
 
+# Calculates wether or not each specific day met the daily target and saves it in variable
     for n in completed_deliveries[0:]:
         if n >= 50:
             met_target += 1
 
-
+# Calculates the average deliveries per day
     average = total_deliveries / 7
 
 
