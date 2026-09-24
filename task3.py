@@ -1,31 +1,43 @@
 #task: calculate delivery cost depending on the distance, weight and typr of delivery
 #types of diliveries: S = Standard, X = Express and P = Priority
 
-#for trail the distance and weight have input
-distance = float(input("Distance (km): "))
-# Added conditions so that the distance and weight must be above 0
-while distance <= 0:
-    print("Error - Value must be greater than zero.")
+def run_task3():
+    #for trail the distance and weight have input
     distance = float(input("Distance (km): "))
-weight = float(input("Weight (kg): "))
-while weight <= 0:
-    print("Error - Value must be greater than zero.")
+    # Added conditions so that the distance and weight must be above 0
+    while distance <= 0:
+        print("Error - Value must be greater than zero.")
+        distance = float(input("Distance (km): "))
     weight = float(input("Weight (kg): "))
-service_multiplier = 0
+    while weight <= 0:
+        print("Error - Value must be greater than zero.")
+        weight = float(input("Weight (kg): "))
 
 
-print("Type of delivery do you want?")
-print("S. Standard  -  0% extra cost")
-print("X. Express  -  25% extra cost")
-print("P. Priority  -  60% extra cost")
 
 
-service_code = input("Delivery type (the letter before type): ")
-service_code = service_code.upper()
-while service_code != "X" and service_code != "P" and service_code != "S":
-    print("Error - Service code must be S, X or P.")
+    print("Type of delivery do you want?")
+    print("S. Standard  -  0% extra cost")
+    print("X. Express  -  25% extra cost")
+    print("P. Priority  -  60% extra cost")
+
+
     service_code = input("Delivery type (the letter before type): ")
     service_code = service_code.upper()
+
+    while service_code != "X" and service_code != "P" and service_code != "S":
+        print("Error - Service code must be S, X or P.")
+        service_code = input("Delivery type (the letter before type): ")
+        service_code = service_code.upper()
+
+            #this runs the functions
+    type_of_delivery(service_code)
+            
+                # Printing final result
+    print(f"Distance (km): {distance:.1f}")
+    print(f"Weight (kg): {weight}")
+    print(f"Service code: {service_code.upper()}")
+    print(f"Delivery quote: {delivery_cost(service_code, distance, weight):.2f} SEK")
 
 
 def type_of_delivery(service_code):
@@ -54,22 +66,15 @@ def type_of_delivery(service_code):
 
 
 
-def delivery_cost():
-
+def delivery_cost(service_code, distance, weight):
+    quote = 0
     service_multiplier = type_of_delivery(service_code)
         
     subtotal = 45.00 + distance*6.50 + weight*4.00 
     #the distance should be in km and the weight in kg
 
     quote = subtotal * service_multiplier 
+    return quote
 
-    #printing the quote 
-
-    print(f"Distance (km): {distance:.1f}")
-    print(f"Weight (kg): {weight}")
-    print(f"Service code: {service_code.upper()}")
-    print(f"Delivery quote: {quote:.2f} SEK")
-
-#this runs the functions
-type_of_delivery(service_code)
-delivery_cost()
+if __name__ == "__main__":
+    run_task3()

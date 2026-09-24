@@ -1,6 +1,6 @@
 # Put global test variables here:
 consolidate_data_testing = "gb-104, GB-220, gb-104, se-011, GB-220"
-
+import task3
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -92,9 +92,33 @@ def check_van_cap():  # Prompts user for load limtit and individual parcel weigh
 
 # Task 9, Comparing delivery scenarios
 def comparing_delivery_scenarios():
-    distance = int(input("Distance (km): "))
-    weight = int(input("Weight (kg): "))
-    pass
+
+    dist = float(input("Distance (km): "))
+    wei = float(input("Weight (kg): "))
+
+    from task3 import delivery_cost
+
+    print("Service comparison")
+    print(f"Standard: {delivery_cost("S", distance = dist, weight = wei)}")
+    print(f"Express: {delivery_cost("X", distance = dist, weight = wei)}")
+    print(f"Priority: {delivery_cost("P", distance = dist, weight = wei)}")
+
+    all_options = [delivery_cost("S", distance = dist, weight = wei), delivery_cost("X", distance = dist, weight = wei), delivery_cost("P", distance = dist, weight = wei)]
+    service_codes = ["Standard", "Express", "Priority"]
+
+    cheapest = all_options[0]
+    for n in all_options[1:]:
+        if n < cheapest:
+            cheapest = n
+
+    expensive = all_options[0]
+    for n in all_options[1:]:
+        if n > expensive:
+            expensive = n
+
+    print(f"Cheapest service: {service_codes[all_options.index(cheapest)]}")
+    print(f"Most expensive service: {service_codes[all_options.index(expensive)]}")
+    return
 
 
 def main():
@@ -115,7 +139,7 @@ def main():
             else:
                 print(f"Valid reference: {output}")
         elif service == 3:
-            pass
+            task3.run_task3()
             # Function for task 3
         elif service == 4:
             pass
@@ -132,7 +156,7 @@ def main():
             import weekly_report # Test - May be changed or removed.
             # Function for task 7
         else:
-            pass
+            comparing_delivery_scenarios() # - Test, may be removed or changed
             # Function for task 9, menu option 8
 
     print("Console closed. Dispatch data remains safe.")
