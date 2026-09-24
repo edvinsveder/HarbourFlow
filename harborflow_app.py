@@ -14,11 +14,12 @@ def menu():  # To chose which of the services
     4. Consolidate parcel labels
     5. Check van capacity
     6. Classify service performance
-    7. Produce weekly dispatch report''')
+    7. Produce weekly dispatch report
+    8. Compare service scenarios''')
 
     choice = input("Select service: ")
-    while choice.isdigit() is False or int(choice) < 1 or int(choice) > 7:  # To make sure the choice is always an integer and within 1-7
-        choice = input("Invalid input, please chooise between 1-7: ")
+    while choice.isdigit() is False or int(choice) < 1 or int(choice) > 8:  # To make sure the choice is always an integer and within 1-7
+        choice = input("Invalid input, please chooise between 1-8: ")
 
     return int(choice)
 
@@ -89,6 +90,13 @@ def check_van_cap():  # Prompts user for load limtit and individual parcel weigh
     return
 
 
+# Task 9, Comparing delivery scenarios
+def comparing_delivery_scenarios():
+    distance = int(input("Distance (km): "))
+    weight = int(input("Weight (kg): "))
+    pass
+
+
 def main():
     while True:
         service = menu()
@@ -120,9 +128,12 @@ def main():
         elif service == 6:
             pass
             # Function for task 6
-        else:
+        elif service == 7:
             import weekly_report # Test - May be changed or removed.
             # Function for task 7
+        else:
+            pass
+            # Function for task 9, menu option 8
 
     print("Console closed. Dispatch data remains safe.")
 
