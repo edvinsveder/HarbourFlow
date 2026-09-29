@@ -33,6 +33,9 @@ Task number 6
 Design notes
 ------------
 Main function boundaries:
+harborflow_app.py holds the menu and tasks 1, 2, 4, 5, 6 and 9.
+calc_quote.py holds task 3, and its delivery_cost is reused by task 9.
+weekly_report.py holds task 7.
 
 How input validation is organized: 
 Gustav went over tasks 2, 3, 5 and 7 to add conditions to which values are accepted

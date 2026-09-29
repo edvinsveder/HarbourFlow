@@ -55,5 +55,7 @@ def weekly_dispatch_report():
     print(f"Days meeting target: {met_target}")
     print()
 
-while weekly_dispatch_report():
-    print("Error - Weekly report values cannot be negative.")
+def run_weekly_report():
+    # Runs the report again until no negative values are entered
+    while weekly_dispatch_report():
+        print("Error - Weekly report values cannot be negative.")
