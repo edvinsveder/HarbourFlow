@@ -109,7 +109,7 @@ def delay_calculation():
     delay = actual - promised
 
     if damaged_parcels > 0:
-        service_status = "SERVICE FAILED"
+        service_status = "SERVICE FAILURE"
     elif delay <= 0:
         service_status = "ON TIME"
     elif delay <= 15:
