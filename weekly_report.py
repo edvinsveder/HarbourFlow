@@ -30,7 +30,7 @@ def weekly_dispatch_report():
     for n in completed_deliveries[1:]:
         if n >= highest_day:
             highest_day = n
-    # Ensures the last highest value is represented
+    # Ensures the last highest value is represented by reversing the list and finding the index of said value, then converting that index to the correct index in the original list
     highest_index = len(completed_deliveries) - 1 - completed_deliveries[::-1].index(highest_day)
 
 # Calculates the day of which the lowest recorded delivery was made
@@ -38,7 +38,7 @@ def weekly_dispatch_report():
     for n in completed_deliveries[1:]:
         if n <= lowest_day:
             lowest_day = n
-    # Ensures the last lowest value is represented
+    # Ensures the last lowest value is represented by reversing the list and finding the index of said value, then converting that index to the correct index in the original list
     lowest_index = len(completed_deliveries) - 1 - completed_deliveries[::-1].index(lowest_day)
 
 # Calculates the total deliveries
