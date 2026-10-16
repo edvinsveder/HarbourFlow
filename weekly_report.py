@@ -13,6 +13,13 @@ def weekly_dispatch_report():
         completed_deliveries_str = completed_deliveries_input.split(", ")
     completed_deliveries = [int(x) for x in completed_deliveries_str] # Converts the strings in the set into integers
 
+    daily_target = input("Daily target: ")
+    while daily_target.isdigit() is False or int(daily_target) < 1:
+        print("Error, please enter a numeric, nonnegative value.")
+        daily_target = input("Daily target: ")
+    daily_target = int(daily_target)
+    
+
     # Checking to make sure all delivery values are greater than 0
     for x in completed_deliveries:
         if x < 0:
@@ -21,14 +28,18 @@ def weekly_dispatch_report():
 # Calculates the day of which the highest recorded delivery was made
     highest_day = completed_deliveries[0]
     for n in completed_deliveries[1:]:
-        if n > highest_day:
+        if n >= highest_day:
             highest_day = n
+    # Ensures the last highest value is represented
+    highest_index = len(completed_deliveries) - 1 - completed_deliveries[::-1].index(highest_day)
 
 # Calculates the day of which the lowest recorded delivery was made
     lowest_day = completed_deliveries[0]
     for n in completed_deliveries[1:]:
-        if n < lowest_day:
+        if n <= lowest_day:
             lowest_day = n
+    # Ensures the last lowest value is represented
+    lowest_index = len(completed_deliveries) - 1 - completed_deliveries[::-1].index(lowest_day)
 
 # Calculates the total deliveries
     for n in completed_deliveries[0:]:
@@ -36,7 +47,7 @@ def weekly_dispatch_report():
 
 # Calculates wether or not each specific day met the daily target and saves it in variable
     for n in completed_deliveries[0:]:
-        if n >= 50:
+        if n >= daily_target:
             met_target += 1
 
 # Calculates the average deliveries per day
@@ -44,14 +55,13 @@ def weekly_dispatch_report():
 
 
     print()
-    print("Daily target: 50")
+    print(f"Daily target: {daily_target}")
     print("Weekly dispatch report")
     print(f"Total deliveries: {total_deliveries}")
     print(f"Average per day: {average:.2f}")
 
-    # Index not allowed? Will re-visit
-    print(f"Highest day: {weekdays[completed_deliveries.index(highest_day)]} ({highest_day})")
-    print(f"Lowest day: {weekdays[completed_deliveries.index(lowest_day)]} ({lowest_day})")
+    print(f"Highest day: {weekdays[highest_index]} ({highest_day})")
+    print(f"Lowest day: {weekdays[lowest_index]} ({lowest_day})")
     print(f"Days meeting target: {met_target}")
     print()
 
